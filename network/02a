@@ -1,0 +1,1 @@
+ifconfig en0 | grep broadcast | cut -f5 -f6 -d' '
