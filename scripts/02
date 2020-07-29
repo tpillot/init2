@@ -1,0 +1,17 @@
+#!/bin/bash
+
+if [ $# -ne 1 ]
+then
+	echo "Please enter a username"
+	exit 1
+fi
+
+sudo pkill -u $1 2>/dev/null
+
+if [ $? -ne 0 ]
+then
+	echo "User '$1' does not exist or is not logged"
+	exit 1
+fi
+
+echo "ok"

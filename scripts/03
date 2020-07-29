@@ -1,0 +1,29 @@
+#!/bin/bash
+
+uid="4a9ceb64f1aed8f0eef65a87c83050121a7e879699cf20cae87a059b655a91b2"
+
+passwd="965889926127e7f898b6dabd04d4702aa72ef8701bf561081c749893576b4c52"
+
+auth=`curl -sX POST --data "grant_type=client_credentials&client_id=$uid&client_secret=$passwd" https://api.intra.42.fr/oauth/token`
+
+token=`echo "$auth" | cut -c18-81`
+
+echo 'entrez un login :'
+
+read login
+
+user=`curl  -sH "Authorization: Bearer $token" "https://api.intra.42.fr/v2/users?filter[login]=$login"`
+
+if [ "$user" = "[]" ]
+ then
+	echo "login incorrect"
+	exit 1
+fi
+
+id_user=`echo $user | cut -d':' -f2 | cut -d',' -f1`
+
+info_user=`curl  -sH "Authorization: Bearer $token" "https://api.intra.42.fr/v2/users/$id_user"`
+
+info_user=`echo $info_user | cut -d':' -f26 | cut -d',' -f1`
+
+echo "level :$info_user"

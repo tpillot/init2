@@ -1,1 +1,1 @@
-netstat -r -f inet | grep default
+netstat -nr -f inet | grep default

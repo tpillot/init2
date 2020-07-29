@@ -1,0 +1,5 @@
+Pour se connecter avec le nouvel utilisateur en session graphique
+il faut taper son login et son mot de passe lors de la connection.
+
+Pour la connection en ssh il faut taper la commande 'ssh USER_NAME@<ip adress>' 
+puis taper le mot de passe de l'utilisateur ou avoir configurer une connection RSA pour cet utilisateur.
